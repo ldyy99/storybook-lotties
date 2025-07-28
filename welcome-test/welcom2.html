@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎来到非凡页</title>
+  <style>
+    /* 整个页面的样式 */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f7f7f7;
+    }
+    /* 欢迎页面的样式 */
+    .welcome-page {
+      height: 100vh; /* 充满屏幕 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: url('your-image-path.jpg') no-repeat center center/cover; /* 背景图 */
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .welcome-page h1 {
+      font-size: 3em;
+    }
+    /* 嵌套 Genially 项目的样式 */
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100vh; /* 嵌套内容自适应屏幕 */
+    }
+    /* 按钮样式 */
+    .start-btn {
+      background-color: #e67e22;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.5em;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 欢迎页面 -->
+  <div class="welcome-page">
+    <h1>欢迎你，小朋友 👋</h1>
+    <p>欢迎来到非凡页的故事世界</p>
+    <button class="start-btn" onclick="startStory()">开始我们的故事</button>
+  </div>
+
+  <!-- 嵌套 Genially 项目 -->
+  <div id="genially-content" style="display: none;">
+    <iframe 
+      src="https://view.genially.com/680cd1439ee912fa8980353f/interactive-content-trivial" 
+      style="width: 100%; height: 100vh; border: none;" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    function startStory() {
+      document.querySelector('.welcome-page').style.display = 'none'; // 隐藏欢迎页面
+      document.getElementById('genially-content').style.display = 'block'; // 显示 Genially 内容
+    }
+  </script>
+</body>
+</html>
