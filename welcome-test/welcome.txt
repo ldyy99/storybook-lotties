@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎来到非凡页</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #e67e22;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 700px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>欢迎你，小朋友 👋</h1>
+  <p>欢迎来到非凡页的故事世界</p>
+  
+  <!-- 嵌套 Genially 项目 -->
+  <iframe 
+    src="https://view.genially.com/680cd1439ee912fa8980353f/interactive-content-trivial" 
+    width="100%" 
+    height="700px" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
+</body>
+</html>
