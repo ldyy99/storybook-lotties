@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎来到非凡页</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f7f7f7;
+      margin: 0;
+    }
+
+    .login-page {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #f1f1f1;
+      padding: 20px;
+    }
+
+    .login-page input {
+      padding: 10px;
+      margin: 10px;
+      font-size: 1em;
+      width: 250px;
+    }
+
+    .login-page button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #e67e22;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .welcome-page {
+      display: none;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: url('your-image-path.jpg') no-repeat center center/cover;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .welcome-page h1 {
+      font-size: 3em;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- 登录页面 -->
+  <div class="login-page" id="login-page">
+    <h1>请输入账户和密码</h1>
+    <input type="text" id="username" placeholder="用户名">
+    <input type="password" id="password" placeholder="密码">
+    <button onclick="login()">登录</button>
+    <p id="error-message" style="color: red; display: none;">用户名或密码错误，请重新尝试。</p>
+  </div>
+
+  <!-- 欢迎页面 -->
+  <div class="welcome-page" id="welcome-page">
+    <h1>欢迎你，小朋友 👋</h1>
+    <p>欢迎来到非凡页的故事世界</p>
+    <button onclick="startStory()">开始我们的故事</button>
+  </div>
+
+  <!-- 嵌套 Genially 项目 -->
+  <div id="genially-content" style="display: none;">
+    <iframe src="https://view.genially.com/680cd1439ee912fa8980353f/interactive-content-trivial" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    // 登录功能
+    const validUsername = 'duoduo'; // 设置有效用户名
+    const validPassword = 'mystory123'; // 设置有效密码
+
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      if (username === validUsername && password === validPassword) {
+        // 保存登录状态和过期时间（一个月）
+        const expirationDate = new Date();
+        expirationDate.setMonth(expirationDate.getMonth() + 1); // 设置一个月后过期
+        localStorage.setItem('loginStatus', 'true');
+        localStorage.setItem('expirationDate', expirationDate.toISOString());
+
+        // 显示欢迎页面
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('welcome-page').style.display = 'flex';
+      } else {
+        // 错误提示
+        document.getElementById('error-message').style.display = 'block';
+      }
+    }
+
+    // 页面加载时检查登录状态和过期时间
+    window.onload = function() {
+      const loginStatus = localStorage.getItem('loginStatus');
+      const expirationDate = localStorage.getItem('expirationDate');
+      
+      if (loginStatus && expirationDate) {
+        const currentDate = new Date();
+        const expDate = new Date(expirationDate);
+
+        // 如果未过期，显示欢迎页面
+        if (currentDate <= expDate) {
+          document.getElementById('login-page').style.display = 'none';
+          document.getElementById('welcome-page').style.display = 'flex';
+        } else {
+          // 登录过期，清除登录状态
+          localStorage.removeItem('loginStatus');
+          localStorage.removeItem('expirationDate');
+          alert('登录已过期，请重新登录。');
+        }
+      } else {
+        // 没有登录，显示登录页面
+        document.getElementById('login-page').style.display = 'flex';
+      }
+    };
+
+    // 点击开始故事按钮，跳转到 Genially 内容
+    function startStory() {
+      document.getElementById('welcome-page').style.display = 'none'; // 隐藏欢迎页面
+      document.getElementById('genially-content').style.display = 'block'; // 显示 Genially 内容
+    }
+  </script>
+</body>
+</html>
